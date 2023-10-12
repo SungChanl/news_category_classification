@@ -26,7 +26,7 @@ category = ['Politic', 'Economic', 'Social', 'Culture', 'World', 'IT']
 pages = [110, 110, 110, 75, 110, 72]
 
 df_title = pd.DataFrame()
-for category_idx in range(6):
+for category_idx in range(4, 6):
     refined_titles = []
     url_segment = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=10{}'.format(category_idx)
 
@@ -54,7 +54,7 @@ for category_idx in range(6):
     df_section_title = pd.DataFrame(refined_titles, columns=['title'])
     df_section_title['category'] = category[category_idx]
     df_title = pd.concat([df_title, df_section_title], axis='rows', ignore_index=True)
-df_title.to_csv('./crawling_data/naver_news.csv')
+df_title.to_csv('./crawling_data/naver_news_world_IT.csv', index=False)
 
 df_title.info()
 print(df_title['category'].value_counts())
